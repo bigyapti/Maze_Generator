@@ -6,6 +6,8 @@ body{
     margin: auto;
     width: 40%;
     background-image: url("./background.jpeg");
+    background-size: cover;
+   
     
     
 }
