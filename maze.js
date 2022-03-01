@@ -140,7 +140,7 @@ class Cell{
         }
         if(this.final){
             
-            ctx.fillStyle = "rgb(83, 247, 43)";
+            ctx.fillStyle = "#39C570";
             ctx.fillRect(x + 1, y + 1, size / columns - 2, size / rows - 2);
 
         }
@@ -204,14 +204,14 @@ class Cell{
 
         if(mazeComplete){
 
-            ctx.fillStyle = 'blue';
+            ctx.fillStyle = '#0C0CA5';
             ctx.fillRect(x, y, this.mazeSize/columns-1, this.mazeSize/rows-1);
 
         }
     
         else{
 
-            ctx.fillStyle = 'green';
+            ctx.fillStyle = '#08A6A8';
             ctx.fillRect(x, y, this.mazeSize/columns-2, this.mazeSize/rows-2);
 
         }
@@ -220,7 +220,7 @@ class Cell{
         
         let x = this.colNum*(this.mazeSize/columns);
         let y = this.rowNum*(this.mazeSize/rows);
-        ctx.fillStyle = 'red';
+        ctx.fillStyle = '#08A6A8';
         ctx.fillRect(x, y, this.mazeSize/columns-1, this.mazeSize/rows-1);
 
 
