@@ -12,12 +12,13 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 84.5vh;
+    min-height: 100vh;
     background-repeat: no-repeat;
+    
    
 
     font-family: 'Press Start 2P', cursive;
-    margin-top: 7rem;
+    margin-top: 4rem;
 }
 #size , #rowscols {
     

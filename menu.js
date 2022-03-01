@@ -56,7 +56,7 @@ function play(event){
     col = current.colNum;
 
     switch (key){
-        case "ArrowUp":
+        case "w":
             if(!current.walls.topWall){
                 let next = newMaze.grid[row-1][col];
                 path.push(next);
@@ -70,7 +70,7 @@ function play(event){
                 }
              }
             break;
-        case "ArrowRight":
+        case "d":
             if(!current.walls.rightWall){
                 let next = newMaze.grid[row][col+1];
                 path.push(next);
@@ -85,7 +85,7 @@ function play(event){
                 
             }
             break;
-        case "ArrowDown":
+        case "s":
             if(!current.walls.bottomWall){
                 let next = newMaze.grid[row+1][col];
                 path.push(next);
@@ -100,7 +100,7 @@ function play(event){
                 
             }
             break;
-        case "ArrowLeft":
+        case "a":
             if(!current.walls.leftWall){
                 let next = newMaze.grid[row][col-1];
                 path.push(next);
