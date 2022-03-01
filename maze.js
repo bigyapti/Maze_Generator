@@ -1,3 +1,6 @@
+//initialize canvas for drawing 
+
+
 let m = document.querySelector(".maze")
 let ctx = m.getContext("2d");
 let current;
@@ -14,7 +17,7 @@ class maze{
         
 
     }
-    
+    //setup 2d grid by adding cell instance to it
     set(){
         for (let r = 0; r < this.rows ; r++){
             let row = [];
@@ -24,16 +27,19 @@ class maze{
             }
             this.grid.push(row);
         }
-        current = this.grid[0][0];//cell objects current 
-        this.grid[this.rows-1][this.columns-1].final=true;
+        current = this.grid[0][0];// first cell initialized as current
+        this.grid[this.rows-1][this.columns-1].final=true;//final cell 
 
 
     }
     draw(){
+        //draw canvas
        m.width = this.size;
        m.height = this.size;
        m.style.background = 'black';
+       //set first cell as visited
        current.visited = true;
+       //display cell for each cell in 2d grid 
        for (let r = 0; r < this.rows ; r++){
         for (let c = 0; c<this.columns; c++){
             let grid = this.grid;
@@ -41,31 +47,35 @@ class maze{
         }
         
     }
+    //gets random neighbor of the current cell and assigns to next
     let next = current.findneighbors();
-
+    //if neighbors exist
     if(next){
 
             next.visited = true;
-
+            //current cell added to stack for backtracking
             this.stack.push(current);
-            
+            //highlights current cell
             current.highlight(this.rows, this.columns);
-
+            //compares current cell and next cell and removes the walls accordingly
             current.removeWalls(current, next);
-
+            //sets next cell as current cell
             current = next;
 
             
 
         }
 
-       else if (this.stack.length>0){
+    //no neighbors start backtracking using already visited cells in stack
+        else if (this.stack.length>0){
+
             let prevCell = this.stack.pop();
             current = prevCell;
+            //backtracking highlighted
             current.highlight(this.rows, this.columns);
 
         }
-
+        // If stack empty then all cells visted and exit
         if (this.stack.length === 0){
 
             mazeComplete = true;
@@ -73,7 +83,7 @@ class maze{
             
         }
 
-       
+       //calls draw recursively till exit condition is met
        window.requestAnimationFrame(()=>{
 
            this.draw();
@@ -125,19 +135,17 @@ class Cell{
         ctx.stroke();
     }
     displaycell(size, rows, columns){
-        let x = this.colNum*(size/columns);
-        let y = this.rowNum*(size/rows);
+        let x = this.colNum*(size/columns);//in pixels for screen 
+        let y = this.rowNum*(size/rows);//in pixels 
         ctx.strokeStyle='white';
         ctx.fillStyle = 'black';
         ctx.lineWidth = 5;
+        //draw walls as lines only if wall is set to true at cell constructor 
         if (this.walls.topWall) this.drawTop(x,y,rows, columns , size);
         if (this.walls.rightWall) this.drawRight(x,y,rows, columns , size);
         if (this.walls.leftWall) this.drawLeft(x,y,rows, columns , size);
         if (this.walls.bottomWall) this.drawBottom(x,y,rows, columns , size);
-        if(this.visited){
-            ctx.fillRect(x+2, y+2, size/columns-2, size/rows-2);
-
-        }
+        //colors final cell
         if(this.final){
             
             ctx.fillStyle = "#39C570";
@@ -151,31 +159,33 @@ class Cell{
         let col = this.colNum;
         let grid = this.mazeGrid;
         let neighbors =[];
-
+        //obtains the possible 4 neighbours according to coordinates and returns undefined if out of bounds(edges)
         let top = row !== 0?grid[row-1][col]:undefined;
         let right = col !== (grid.length - 1)?grid[row][col+1]:undefined;
         let bottom = row !== (grid.length - 1)?grid[row+1][col]:undefined;
         let left = col !== 0?grid[row][col-1]:undefined;
 
+        //if not undefined push into neighbors array
         if (top && !top.visited) neighbors.push(top);
         if (right && !right.visited) neighbors.push(right);
         if (bottom && !bottom.visited) neighbors.push(bottom);
         if (left && !left.visited) neighbors.push(left);
-
+        //obtains random neighbor out of the 4 and returns it  
         if (neighbors.length!==0 ){
+            
             let random = Math.floor(Math.random()*neighbors.length);
             return neighbors[random];
 
-        }
+        }//if no neighbor returns undefined 
         else {
             return undefined;
         }
     }
     removeWalls(cell1, cell2){
 
-        let dx = cell1.colNum - cell2.colNum;
-        let dy = cell1.rowNum - cell2.rowNum;
-
+        let dx = cell1.colNum - cell2.colNum;//compares 2 cells on x axis
+        let dy = cell1.rowNum - cell2.rowNum;// compares 2 cells on y axis
+        //removes relevant walls if there is a difference in x axis
         if(dx==1){
             cell1.walls.leftWall =false;
             cell2.walls.rightWall = false;
@@ -184,6 +194,7 @@ class Cell{
             cell1.walls.rightWall =false;
             cell2.walls.leftWall= false;
         }
+        //removes relevant walls if there is a difference in y axis
         if(dy==1){
             cell1.walls.topWall =false;
             cell2.walls.bottomWall = false;
@@ -196,10 +207,11 @@ class Cell{
 
 
     }
+    //colors the cell
     highlight(rows, columns){
 
-        let x = this.colNum*(this.mazeSize/columns);
-        let y = this.rowNum*(this.mazeSize/rows);
+        let x = this.colNum*(this.mazeSize/columns)+1;
+        let y = this.rowNum*(this.mazeSize/rows)+1;
 
 
         if(mazeComplete){
