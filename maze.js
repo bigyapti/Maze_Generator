@@ -216,6 +216,15 @@ class Cell{
 
         }
     }
+    highlightcurrent(rows, columns){
+        
+        let x = this.colNum*(this.mazeSize/columns);
+        let y = this.rowNum*(this.mazeSize/rows);
+        ctx.fillStyle = 'red';
+        ctx.fillRect(x, y, this.mazeSize/columns-1, this.mazeSize/rows-1);
+
+
+    }
 
    
 }

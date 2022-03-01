@@ -63,7 +63,7 @@ function play(event){
                 current = next;
                 newMaze.draw();
                 displaypath();
-                current.highlight(newMaze.rows, newMaze.columns);
+                current.highlightcurrent(newMaze.rows, newMaze.columns);
                 if (current.final){
                     
                     complete.style.display="block";
@@ -77,7 +77,8 @@ function play(event){
                 current = next;
                 newMaze.draw();
                 displaypath();
-                current.highlight(newMaze.rows, newMaze.columns);
+                
+                current.highlightcurrent(newMaze.rows, newMaze.columns);
                 if (current.final){
                     
                     complete.style.display="block";
@@ -92,7 +93,7 @@ function play(event){
                 current = next;
                 newMaze.draw();
                 displaypath();
-                current.highlight(newMaze.rows, newMaze.columns);
+                current.highlightcurrent(newMaze.rows, newMaze.columns);
                 if (current.final){
                     
                     complete.style.display="block";
@@ -107,7 +108,7 @@ function play(event){
                 current = next;
                 newMaze.draw();
                 displaypath();
-                current.highlight(newMaze.rows, newMaze.columns);
+                current.highlightcurrent(newMaze.rows, newMaze.columns);
                 if (current.final){
                     
                     complete.style.display="block";
