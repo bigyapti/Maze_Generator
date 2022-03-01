@@ -12,7 +12,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 83.5vh;
+    min-height: 84.5vh;
+    background-repeat: no-repeat;
    
 
     font-family: 'Press Start 2P', cursive;
@@ -20,12 +21,12 @@ body {
 }
 #size , #rowscols {
     
-    margin: 10px;
+    margin: 5px;
 
 }
 #submit, button {
 
-    margin: 10px;
+    margin: 5px;
     background-color: rgba(56, 165, 156, 0.89);
     padding : 10px;
     font-family: 'Press Start 2P', cursive;
