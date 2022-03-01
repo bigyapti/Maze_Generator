@@ -5,16 +5,17 @@ let complete = document.querySelector(".complete");
 let reload = document.querySelector(".reload");
 
 complete.style.display="none";
+reload.style.display ="none";
 
 let newMaze;
 let path = [];
 
-form.addEventListener("submit",mazeGen);
+form.addEventListener("submit",mazeGen);//calls mazegen on keydown
 
-document.addEventListener("keydown", play);
+document.addEventListener("keydown", play);//calls play on keydown
 
 reload.addEventListener("click", () => {
-    location.reload();
+    location.reload();//refreshes page 
   });
 
 

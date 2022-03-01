@@ -14,6 +14,7 @@ class maze{
         
 
     }
+    
     set(){
         for (let r = 0; r < this.rows ; r++){
             let row = [];
@@ -23,7 +24,7 @@ class maze{
             }
             this.grid.push(row);
         }
-        current = this.grid[0][0];
+        current = this.grid[0][0];//cell objects current 
         this.grid[this.rows-1][this.columns-1].final=true;
 
 
@@ -128,7 +129,7 @@ class Cell{
         let y = this.rowNum*(size/rows);
         ctx.strokeStyle='white';
         ctx.fillStyle = 'black';
-        ctx.lineWidth = 4;
+        ctx.lineWidth = 5;
         if (this.walls.topWall) this.drawTop(x,y,rows, columns , size);
         if (this.walls.rightWall) this.drawRight(x,y,rows, columns , size);
         if (this.walls.leftWall) this.drawLeft(x,y,rows, columns , size);
@@ -204,7 +205,7 @@ class Cell{
         if(mazeComplete){
 
             ctx.fillStyle = 'blue';
-            ctx.fillRect(x+2, y+2, this.mazeSize/columns-4, this.mazeSize/rows-4);
+            ctx.fillRect(x, y, this.mazeSize/columns-1, this.mazeSize/rows-1);
 
         }
     
